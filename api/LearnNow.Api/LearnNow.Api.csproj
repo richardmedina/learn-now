@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LearnNow.Domain\LearnNow.Domain.csproj" />
+    <ProjectReference Include="..\LearnNow.Services\LearnNow.Services.csproj" />
   </ItemGroup>
 
 </Project>

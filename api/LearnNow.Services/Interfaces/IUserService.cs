@@ -8,6 +8,6 @@ namespace LearnNow.Services.Interfaces
 {
     public interface IUserService
     {
-        Task Create(CreateUserDto createUserDto);
+        Task CreateAsync(CreateUserDto createUserDto);
     }
 }
