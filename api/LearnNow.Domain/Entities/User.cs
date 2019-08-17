@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LearnNow.Domain.Entities
+﻿namespace LearnNow.Domain.Entities
 {
     public class User
     {
