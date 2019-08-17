@@ -11,7 +11,7 @@ namespace LearnNow.Services
 {
     public static class ServiceRegistration
     {
-        public static void ConfigureServices (IConfiguration configuration, IServiceCollection services)
+        public static void ConfigureLearnNowServices (this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
         }

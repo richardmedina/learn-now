@@ -30,7 +30,7 @@ namespace LearnNow.Api
         {
             services.AddDbContext<LearnNowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnNow")));
 
-            ServiceRegistration.ConfigureServices(Configuration, services);
+            services.ConfigureLearnNowServices();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

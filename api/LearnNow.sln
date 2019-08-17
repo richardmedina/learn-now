@@ -5,11 +5,17 @@ VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnNow.Api", "LearnNow.Api\LearnNow.Api.csproj", "{175DF16F-76CF-40F2-9E00-969D11B5F610}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnNow.Services", "LearnNow.Services\LearnNow.Services.csproj", "{AEC31D24-325C-45C6-9B01-6CB923CA5E06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnNow.Services", "LearnNow.Services\LearnNow.Services.csproj", "{AEC31D24-325C-45C6-9B01-6CB923CA5E06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnNow.Contracts", "LearnNow.Contracts\LearnNow.Contracts.csproj", "{F6FDEBAA-8F59-4FA8-ACC5-CBD1979F8082}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnNow.Contracts", "LearnNow.Contracts\LearnNow.Contracts.csproj", "{F6FDEBAA-8F59-4FA8-ACC5-CBD1979F8082}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnNow.Domain", "LearnNow.Domain\LearnNow.Domain.csproj", "{567AE0A1-BE78-41E8-8F17-5ABEED3BBFDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnNow.Domain", "LearnNow.Domain\LearnNow.Domain.csproj", "{567AE0A1-BE78-41E8-8F17-5ABEED3BBFDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{CE4703F1-9B5D-406D-A5DF-ECA5DDE828C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{00276DD4-2C1B-4C08-8DE5-223A6BAA0920}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{57963083-27C7-47B7-85E3-BBAB772285FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +42,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{175DF16F-76CF-40F2-9E00-969D11B5F610} = {00276DD4-2C1B-4C08-8DE5-223A6BAA0920}
+		{AEC31D24-325C-45C6-9B01-6CB923CA5E06} = {57963083-27C7-47B7-85E3-BBAB772285FE}
+		{F6FDEBAA-8F59-4FA8-ACC5-CBD1979F8082} = {CE4703F1-9B5D-406D-A5DF-ECA5DDE828C7}
+		{567AE0A1-BE78-41E8-8F17-5ABEED3BBFDE} = {57963083-27C7-47B7-85E3-BBAB772285FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FB403BE-00F6-4BAC-852D-B79DBBAB7E7D}
