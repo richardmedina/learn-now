@@ -1,5 +1,6 @@
 ﻿using LearnNow.Contracts.User;
 using LearnNow.Domain;
+using LearnNow.Domain.Entities;
 using LearnNow.Services.Abstract;
 using LearnNow.Services.Interfaces;
 using System;
@@ -15,9 +16,15 @@ namespace LearnNow.Services.User
         {
         }
 
-        public Task CreateAsync(CreateUserDto createUserDto)
-        {
-            throw new NotImplementedException();
+        public async Task CreateAsync(CreateUserDto createUserDto)
+        { 
+            Context.Users.Add(new UserEntity
+            {
+                Username = createUserDto.UserName,
+                Password = createUserDto.Password
+            });
+
+            await Context.SaveChangesAsync();
         }
     }
 }

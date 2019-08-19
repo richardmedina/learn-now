@@ -1,4 +1,5 @@
-﻿using LearnNow.Domain;
+﻿using AutoMapper;
+using LearnNow.Domain;
 using LearnNow.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +23,7 @@ namespace LearnNow.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LearnNowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnNow")));
+            services.AddAutoMapper(typeof(Startup));
 
             services.ConfigureLearnNowServices();
 

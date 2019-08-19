@@ -1,6 +1,6 @@
 ﻿namespace LearnNow.Domain.Entities
 {
-    public class User
+    public class UserEntity
     {
         public long Id { get; set; }
         public string Username { get; set; }

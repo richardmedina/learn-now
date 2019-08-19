@@ -1,6 +1,8 @@
 ﻿using LearnNow.Api.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using LearnNow.Contracts.User;
+using LearnNow.Services.Interfaces;
 
 namespace LearnNow.Api.Controllers
 {
@@ -8,10 +10,22 @@ namespace LearnNow.Api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IUserService _userService;
+
+        public UsersController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(CreateUserRequest request)
         {
-            await Task.Yield();
+            await _userService.CreateAsync(new CreateUserDto
+            {
+                UserName =  request.UserName,
+                Password =  request.Password
+            });
+
             return Created("uri", "value");
         }
 

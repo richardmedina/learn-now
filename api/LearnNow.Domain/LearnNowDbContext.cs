@@ -5,7 +5,7 @@ namespace LearnNow.Domain
 {
     public class LearnNowDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
         public LearnNowDbContext(DbContextOptions options) : base(options)
         {
         }
