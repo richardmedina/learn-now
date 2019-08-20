@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearnNow.Domain.Migrations
 {
     [DbContext(typeof(LearnNowDbContext))]
-    [Migration("20190819050902_Initial")]
+    [Migration("20190820041005_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,7 @@ namespace LearnNow.Domain.Migrations
 
                     b.Property<string>("Password");
 
-                    b.Property<string>("Username");
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 

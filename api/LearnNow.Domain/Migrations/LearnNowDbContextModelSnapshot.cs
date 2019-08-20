@@ -26,7 +26,7 @@ namespace LearnNow.Domain.Migrations
 
                     b.Property<string>("Password");
 
-                    b.Property<string>("Username");
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 

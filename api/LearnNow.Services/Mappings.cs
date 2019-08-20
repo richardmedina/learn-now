@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using LearnNow.Contracts.User;
+using LearnNow.Domain.Entities;
 
 namespace LearnNow.Services
 {
@@ -11,7 +13,7 @@ namespace LearnNow.Services
 
         public void CreateUserMappings()
         {
-
+            CreateMap<UserDto, UserEntity>();
         }
     }
 }

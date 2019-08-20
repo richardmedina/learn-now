@@ -29,6 +29,12 @@ namespace LearnNow.Api.Controllers
             return Created("uri", "value");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _userService.GetAllAsync());
+        }
+
         [HttpGet("{userId}")]
         public async Task<IActionResult> Get(long userId)
         {
