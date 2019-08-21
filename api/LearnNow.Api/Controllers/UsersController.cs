@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using LearnNow.Contracts.User;
 using LearnNow.Services.Interfaces;
+using AutoMapper;
 
 namespace LearnNow.Api.Controllers
 {
@@ -10,43 +11,47 @@ namespace LearnNow.Api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IUserService _userService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IMapper mapper, IUserService userService)
         {
+            _mapper = mapper;
             _userService = userService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateUserRequest request)
+        public async Task<IActionResult> Post(CreateUserRequestModel request)
         {
-            await _userService.CreateAsync(new CreateUserDto
-            {
-                UserName =  request.UserName,
-                Password =  request.Password
-            });
+            var result = await _userService.CreateAsync(_mapper.Map<CreateUserDto>(request));
 
             return Created("uri", "value");
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string reference)
         {
-            return Ok(await _userService.GetAllAsync());
+            var result = string.IsNullOrEmpty(reference)
+                ? await _userService.GetAllAsync()
+                : await _userService.GetByReferenceAsync(reference);
+
+            return Ok(result);
         }
 
         [HttpGet("{userId}")]
         public async Task<IActionResult> Get(long userId)
         {
-            await Task.Yield();
-            return Ok();
+            var result = await _userService.GetByUserIdAsync(userId);
+
+            return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put()
+        public async Task<IActionResult> Put([FromBody] UpdateUserRequestModel request)
         {
-            await Task.Yield();
-            return Ok();
+            var result = await _userService.UpdateAsync(_mapper.Map<UpdateUserDto>(request));
+
+            return Ok(result);
         }
 
         [HttpDelete("{userId}")]
