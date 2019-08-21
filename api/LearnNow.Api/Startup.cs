@@ -25,7 +25,9 @@ namespace LearnNow.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LearnNowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnNow")));
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(
+                typeof(Startup),
+                typeof(ServiceMappings));
 
             services.ConfigureLearnNowServices();
 
