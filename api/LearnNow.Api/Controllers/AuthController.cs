@@ -4,7 +4,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using LearnNow.Api.Models.Auth;
+using LearnNow.Contracts;
+using LearnNow.Contracts.Auth;
+using LearnNow.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -15,33 +19,26 @@ namespace LearnNow.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private string AuthKey = "This is just another longer key";
-        private string Issuer = "issuer";
-        private string Audience = "audience";
+        private readonly IMapper _mapper;
+        private readonly IAuthService _authService;
+        public AuthController(IMapper mapper, IAuthService authService)
+        {
+            _mapper = mapper;
+            _authService = authService;
+        }
+
         // POST: api/Auth
         [HttpPost]
-        public IActionResult Post([FromBody] AuthRequestModel request)
+        public async Task<IActionResult> Post([FromBody] AuthRequestModel request)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes (AuthKey));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var result = await _authService.Authorize(_mapper.Map<AuthorizeDto> (request));
 
-            var expiration = DateTime.UtcNow.AddHours(1);
+            if (result.CodeResult == CodeResult.Success)
+            {
+                return Ok(result.Result);
+            }
 
-            var tokenBuildInfo = new JwtSecurityToken(
-                issuer: Issuer,
-                audience: Audience,
-                claims: null,
-                expires: expiration,
-                signingCredentials: creds
-            );
-
-            var token = new JwtSecurityTokenHandler().WriteToken(tokenBuildInfo);
-
-
-            return Ok(new AuthResponseModel {
-                Token = token,
-                Expiration = expiration
-            });
+            return Unauthorized();
         }
     }
 }

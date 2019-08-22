@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using LearnNow.Api.Models.Auth;
 using LearnNow.Api.Models.Users;
+using LearnNow.Contracts.Auth;
 using LearnNow.Contracts.User;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace LearnNow.Api.Mappings
         public ModelMappings()
         {
             CreateUserMappings();
+            CreateAuthMappings();
         }
 
         public void CreateUserMappings ()
@@ -22,6 +25,11 @@ namespace LearnNow.Api.Mappings
 
             CreateMap<CreateUserRequestModel, CreateUserDto>();
             CreateMap<UpdateUserRequestModel, UpdateUserDto>();
+        }
+
+        public void CreateAuthMappings ()
+        {
+            CreateMap<AuthRequestModel, AuthorizeDto>();
         }
     }
 }
