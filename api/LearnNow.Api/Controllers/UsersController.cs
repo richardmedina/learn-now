@@ -9,7 +9,7 @@ namespace LearnNow.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseController
     {
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
@@ -31,9 +31,9 @@ namespace LearnNow.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll(string reference)
         {
-            var result = string.IsNullOrEmpty(reference)
-                ? await _userService.GetAllAsync()
-                : await _userService.GetByReferenceAsync(reference);
+            var result = await (string.IsNullOrEmpty(reference)
+                ? _userService.GetAllAsync()
+                : _userService.GetByReferenceAsync(reference));
 
             return Ok(result);
         }
@@ -55,10 +55,10 @@ namespace LearnNow.Api.Controllers
         }
 
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> Delete()
+        public async Task<IActionResult> Delete(long userId)
         {
-            await Task.Yield();
-
+            var result = await _userService.DeleteAsync(userId);
+            
             return Ok();
         }
     }

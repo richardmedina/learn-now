@@ -46,7 +46,7 @@ namespace LearnNow.Services.User
             });
         }
 
-        public async Task<GenericServiceResult<bool>> Delete(long userId)
+        public async Task<GenericServiceResult<bool>> DeleteAsync(long userId)
         {
             var userToDelete = await GetUserEntity(userId);
 
@@ -54,6 +54,7 @@ namespace LearnNow.Services.User
             {
                 Context.Users.Remove(userToDelete);
                 await Context.SaveChangesAsync();
+
                 return GetSuccessResult(true);
             }
 

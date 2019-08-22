@@ -14,6 +14,6 @@ namespace LearnNow.Services.Interfaces
         Task<GenericServiceResult<IEnumerable<UserDto>>> GetByReferenceAsync(string userName);
         Task<GenericServiceResult<UserDto>> GetByUserIdAsync(long userId);
         Task<GenericServiceResult<UserDto>> GetByUsernameAsync(string userName);
-        Task<GenericServiceResult<bool>> Delete(long userId);
+        Task<GenericServiceResult<bool>> DeleteAsync(long userId);
     }
 }
