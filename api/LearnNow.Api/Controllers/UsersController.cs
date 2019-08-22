@@ -4,11 +4,14 @@ using System.Threading.Tasks;
 using LearnNow.Contracts.User;
 using LearnNow.Services.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LearnNow.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : BaseController
     {
         private readonly IMapper _mapper;
