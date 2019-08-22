@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using LearnNow.Api.Models.Auth;
 using LearnNow.Contracts;
 using LearnNow.Contracts.Auth;
 using LearnNow.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using System.Threading.Tasks;
 
 namespace LearnNow.Api.Controllers
 {
@@ -31,7 +24,7 @@ namespace LearnNow.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AuthRequestModel request)
         {
-            var result = await _authService.Authorize(_mapper.Map<AuthorizeDto> (request));
+            var result = await _authService.Authorize(_mapper.Map<AuthorizeDto>(request));
 
             if (result.CodeResult == CodeResult.Success)
             {
